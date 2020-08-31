@@ -14,7 +14,7 @@ EffectFather::EffectFather(Adafruit_NeoPixel *pixels, int quantityLeds, float se
 
 // Funcion de la clase EffectFather
 void EffectFather::run(float value){
-    
+
 }
 
 
@@ -22,7 +22,7 @@ void EffectFather::run(float value){
 
 
 // Contructor de la clase TransitionEffect
-TransitionEffect::TransitionEffect(int delayEffect){
+TransitionEffect::TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -34,7 +34,7 @@ void TransitionEffect::run(float valPico){
     int i = _posicionLed;
 
 
-    if((millis() - _tiempoEfectoTransicion) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         if(_direccionEfecto == false){
     
@@ -69,7 +69,7 @@ void TransitionEffect::run(float valPico){
             _posicionLed--;
         }
 
-        _tiempoEfectoTransicion = millis();
+        _tiempoEfecto = millis();
     }
 
     if(valPico < _sensibilidadPico){return;}
@@ -96,15 +96,11 @@ void TransitionEffect::run(float valPico){
 
 
 
-/*
 
 
 
-WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+
+WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -114,7 +110,7 @@ void WaveEffect::run(float valPico){
     int i = _posicionLed;
 
 
-    if((millis() - _tiempoEfectoOlas) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         if(_varAscendente < topeMaximoLeds){
             _pixels->setPixelColor(_varAscendente, _r, _g, _b);
@@ -156,7 +152,7 @@ void WaveEffect::run(float valPico){
         
         _posicionLed++;
         _pixels->show();
-        _tiempoEfectoOlas = millis();
+        _tiempoEfecto = millis();
     }
 
 
@@ -193,11 +189,7 @@ void WaveEffect::run(float valPico){
 
 
 
-DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -210,19 +202,17 @@ void DotsDegradableEffect::run(float valPico){
     byte valorDeIncremento = 1;
 
 
-    if(millis() > _tiempoEfectoPuntosDegradables + delayCambioColor){
+    if(millis() > _tiempoColorPuntosDegradables + delayCambioColor){
         
         _r = random(0,255);
         _g = random(0,255);
         _b = random(0,255);
         
-        _tiempoEfectoPuntosDegradables = millis();
+        _tiempoColorPuntosDegradables = millis();
     }
     
 
-    if(millis() > _tiempoColorPuntosDegradables + _delayEfecto){
-
-        _tiempoColorPuntosDegradables = millis();
+    if(millis() > _tiempoEfecto + _delayEfecto){
 
         for(int i=0;i < _cantidadMaxLeds;i++){
 
@@ -242,6 +232,7 @@ void DotsDegradableEffect::run(float valPico){
             }
         }
         _pixels->show();
+        _tiempoEfecto = millis();
     }
 
 
@@ -278,11 +269,7 @@ void DotsDegradableEffect::run(float valPico){
 
 
 
-WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -290,7 +277,7 @@ void WormEffect::run(float valPico){
 
     int i = _posicionLed;
 
-    if((millis() - _tiempoEfectoGusano) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         if(_incrementando == true){
 
@@ -364,7 +351,7 @@ void WormEffect::run(float valPico){
         }
 
         _pixels->show();
-        _tiempoEfectoGusano = millis();
+        _tiempoEfecto = millis();
     }
 
 
@@ -397,11 +384,7 @@ void WormEffect::run(float valPico){
 
 
 
-RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -410,7 +393,7 @@ void RandomEffect::run(float valPico){
     int avanceMaximo = round(_numPixel/3);
 
 
-    if((millis() - _tiempoEfectoRandom) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         if(_i < _numPixel){_pixels->setPixelColor(_i,_r,_g,_b);}
         if(_a >= 0){_pixels->setPixelColor(_a,_r,_g,_b);}
@@ -424,7 +407,7 @@ void RandomEffect::run(float valPico){
             _iniciarSecuencia = false;
         }
 
-        _tiempoEfectoRandom = millis();
+        _tiempoEfecto = millis();
     }
 
 
@@ -459,11 +442,7 @@ void RandomEffect::run(float valPico){
 
 
 
-ReboundEffect::ReboundEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+ReboundEffect::ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -485,7 +464,7 @@ void ReboundEffect::run(float valPico){
         }
     }
 
-    if((millis() - _tiempoEfectoRebote) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         _a--;_i++;
 
@@ -502,7 +481,7 @@ void ReboundEffect::run(float valPico){
         }
 
         _pixels->show();
-        _tiempoEfectoRebote = millis();
+        _tiempoEfecto = millis();
     }
 
 
@@ -530,11 +509,7 @@ void ReboundEffect::run(float valPico){
 
 
 
-ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -543,7 +518,7 @@ void ShockEffect::run(float valPico){
     int mitadTira = _numPixel/2;
 
 
-    if((millis() - _tiempoEfectoChoque) >= _delayEfecto && _iniciarSecuencia == true){
+    if((millis() - _tiempoEfecto) >= _delayEfecto && _iniciarSecuencia == true){
 
         if(_incrementando == true){
 
@@ -589,7 +564,7 @@ void ShockEffect::run(float valPico){
         }
         
         _pixels->show();
-        _tiempoEfectoChoque = millis();
+        _tiempoEfecto = millis();
     }
 
 
@@ -619,11 +594,7 @@ void ShockEffect::run(float valPico){
 
 
 
-ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int value, int sensibilityPeak, float decrementValue, int delayEffect){
-    _pixels = pixels;
-    if(value > 0){_numPixel = value;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
+ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 
     for(int i=0;i < _cantidadLedsDesplazables;i++){
@@ -647,9 +618,7 @@ void ScrollingDotsEffect::run(float valPico){
     }
 
 
-    if(millis() > _tiempoEfectoPuntosDesplazables + _delayEfecto){
-
-        _tiempoEfectoPuntosDesplazables = millis();
+    if(millis() > _tiempoEfecto + _delayEfecto){
 
         for(int i=0;i < _cantidadLedsDesplazables;i++)
         {
@@ -666,6 +635,7 @@ void ScrollingDotsEffect::run(float valPico){
             }
         }
         _pixels->show();
+        _tiempoEfecto = millis();
     }
 
 
@@ -690,5 +660,3 @@ void ScrollingDotsEffect::run(float valPico){
         }
     }
 }
-
-*/

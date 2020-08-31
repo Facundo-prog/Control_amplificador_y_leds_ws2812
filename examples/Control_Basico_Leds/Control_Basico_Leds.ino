@@ -18,18 +18,22 @@
 
 
 //------Pines Utilizados ------//
-byte pinLeds = 2;
+byte pinLeds = 3;
 byte pinLecturaAudio = A0;
 
 
 //---------- Variables del programa ---------//
-int cantidadLeds = 50;//Determina la cantidad de leds a controlar
+int cantidadLeds = 40;//Determina la cantidad de leds a controlar
+float valorPico = 1;
+float valorDecremento = 0.50;
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
-byte efectoActual = 0;//Determina el efecto que se esta generando
+byte efectoActual = 7;//Determina el efecto que se esta generando
 byte cantidadEfectos = 8;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
+
+float value = 0;
 
 
 //--------- Instancias de Objetos ---------//
@@ -38,27 +42,19 @@ AudioControl audio(pinLecturaAudio);
 
 
 //-------- Inicializacion de los efectos -----------//
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
+WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
+RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
+ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
+ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 35);// No adaptado a millis
 
-EffectFather padre(&leds, cantidadLeds, 4, 0.15);// Clase padre
-TransitionEffect efect_1(15);                    // Clase Hija
-
-/*
-WaveEffect efect_2(&leds, cantidadLeds, 4, 0.15, 15);
-DotsDegradableEffect efect_3(&leds, cantidadLeds, 4, 0.30, 40);// No adaptado a millis
-WormEffect efect_4(&leds, cantidadLeds, 4, 0.15, 20);
-RandomEffect efect_5(&leds, cantidadLeds, 4, 0.15, 5);
-ReboundEffect efect_6(&leds, cantidadLeds, 4, 0.15, 40);
-ShockEffect efect_7(&leds, cantidadLeds, 4, 0.15, 5);
-ScrollingDotsEffect efect_8(&leds, cantidadLeds, 4, 0.15, 35);// No adaptado a millis
+EffectFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
 
 
-
-///////////// NO PERMITE DECLARAR ESTO, dice que 'IEffects' no puede hacerder a 'TransitionEffect' //////////////////
-
-IEffects* efectos[] = {&efect_1, &efect_2, &efect_3, &efect_4, &efect_5, &efect_6, &efect_7, &efect_8};
-
-*/
-void setup() {
+void setup(){
 
     audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
     audio.setDetectionFrequency(5000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
@@ -66,14 +62,17 @@ void setup() {
     leds.begin();//Inicializo los leds
     leds.clear();//Apago los leds
     leds.setBrightness(brilloLeds);//Seteo el brillo
+
+    randomSeed(millis());
 }   
 
 
 void loop(){
 
+    value = audio.readAudio();//Actualizo el valor de audio
+
     if(estadoEfectos == true){
-        //efectos[efectoActual]->run(audio.readAudio());//Actualizo el estado de los leds
-        //efect_1.run(audio.readAudio());
+        efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
 
     if((millis() - tiempoAnteriorComprobacion) >= 10000){
@@ -82,7 +81,7 @@ void loop(){
         leds.clear();//Apago los leds
 
         if(audio.getStateMute() == true){
-            estadoEfectos = false;//Desactivo los efectos
+            //estadoEfectos = false;//Desactivo los efectos
         }
 
         if(efectoActual >= cantidadEfectos){
