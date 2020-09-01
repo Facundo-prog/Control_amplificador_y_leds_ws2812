@@ -76,8 +76,7 @@ void TransitionEffect::run(float valPico){
  
     
     if(valPico > _pico && _iniciarSecuencia == false){
-        _pico = valPico;
-
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
 
         _r = random(0,255);
@@ -161,7 +160,7 @@ void WaveEffect::run(float valPico){
 
     if (valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
 
         _ledArranque = random(3, (_numPixel - 3));
@@ -241,7 +240,7 @@ void DotsDegradableEffect::run(float valPico){
     
     if(valPico > _pico){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
 
         for(int i=0;i < _cantidadMaxLeds;i++){
             if(_divLedsEfectoVoz[0][i] == 0){
@@ -360,7 +359,7 @@ void WormEffect::run(float valPico){
 
     if (valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
 
         _pixel = random(0, _numPixel);
@@ -416,7 +415,7 @@ void RandomEffect::run(float valPico){
         
     if(valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
 
         _pixelElegido = random(0,_numPixel);
@@ -490,7 +489,7 @@ void ReboundEffect::run(float valPico){
 
     if (valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
     }
     else {
@@ -573,7 +572,7 @@ void ShockEffect::run(float valPico){
 
     if (valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
         _iniciarSecuencia = true;
     
         _r = random(0, 255);
@@ -644,7 +643,7 @@ void ScrollingDotsEffect::run(float valPico){
 
     if (valPico > _pico){
 
-        _pico = valPico;
+        _pico = valPico * valPico;
     
         for(int i=0;i < _cantidadLedsDesplazables;i++){
             if(_ledsDesplazables[i] == 0){
