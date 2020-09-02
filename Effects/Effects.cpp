@@ -1,32 +1,14 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include "Effects.h"
+#include "EffectsFather.h"
 
 
 
-// Contructor de la clase EffectFather
-EffectFather::EffectFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue){
-    _pixels = pixels;
-    if(quantityLeds > 0){_numPixel = quantityLeds;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
-    if(decrementValue >= 0){_valorDecrementoEntrePicos = decrementValue;}
-}
-
-// Funcion de la clase EffectFather
-void EffectFather::run(float value){
-
-}
-
-
-
-
-
-// Contructor de la clase TransitionEffect
 TransitionEffect::TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
-// Implementacion de la funcion heredada de EffectFather
 void TransitionEffect::run(float valPico){
 
     byte mitadLeds = _numPixel/2;
@@ -86,7 +68,7 @@ void TransitionEffect::run(float valPico){
     else {
     
         if(_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }
@@ -174,7 +156,7 @@ void WaveEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 
@@ -255,7 +237,7 @@ void DotsDegradableEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 
@@ -370,7 +352,7 @@ void WormEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }
@@ -429,7 +411,7 @@ void RandomEffect::run(float valPico){
     else {
     
         if(_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }
@@ -495,7 +477,7 @@ void ReboundEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }
@@ -582,7 +564,7 @@ void ShockEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }
@@ -655,7 +637,7 @@ void ScrollingDotsEffect::run(float valPico){
     else {
 
         if (_pico > 1){
-            _pico = _pico - _valorDecrementoEntrePicos;
+            _pico -= _valorDecrementoEntrePicos;
         }
     }
 }

@@ -3,46 +3,14 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-
-
-class IEffects{
-
-    public:
-        virtual void run(float value) = 0;
-};
-
-
-
-class EffectFather : public IEffects{
-
-    public:
-        EffectFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue);// Constructor comun para todos los efectos
-        void run(float value) override;// Funcion heredada de IEffects
-
-    protected:
-
-        //Variables comunes a todos los efectos
-        Adafruit_NeoPixel* _pixels;
-
-        unsigned long _tiempoEfecto = 0;
-        int _numPixel = 0;
-        int _delayEfecto = 0;
-        float _pico = 0;
-        float _sensibilidadPico = 1;
-        float _valorDecrementoEntrePicos = 0.15;
-        byte _r;
-        byte _g;
-        byte _b;
-
-};
-
+#include "EffectsFather.h"
 
 
 class TransitionEffect : public EffectFather{
 
     public:
         TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);// Constructor
-        void run(float value);// Implementacion de la clase EffectFather 
+        void run(float value); 
         
     private:
 
