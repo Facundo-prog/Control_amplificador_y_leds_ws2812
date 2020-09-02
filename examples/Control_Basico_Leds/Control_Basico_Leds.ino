@@ -11,9 +11,10 @@
 // Es necesario tener instalada la libreria: Adafruit_NeoPixel.h en el mismo directorio que Effects.h
 
 
-#include <Adafruit_NeoPixel.h>//Libreria necesaria para controlar los leds
-#include "AudioControl.h" // Libreria que controla el audio
-#include "Effects.h"      //Libreria que controla los efectos
+#include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
+#include "AudioControl.h"     // Libreria que controla el audio
+#include "EffectsFather.h"    // Libreria padre de Effects.h
+#include "Effects.h"          // Libreria que controla los efectos
 #include <Arduino.h>
 
 
@@ -33,7 +34,7 @@ byte efectoActual = 7;//Determina el efecto que se esta generando
 byte cantidadEfectos = 8;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
 
-float value = 0;
+float value = 0;//Guardo temporalmente el valor de audio
 
 
 //--------- Instancias de Objetos ---------//
@@ -51,6 +52,8 @@ ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
 ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 35);// No adaptado a millis
 
+
+//--------- Array de Efectos -----------//
 EffectFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
 
 
@@ -76,12 +79,12 @@ void loop(){
     }
 
     if((millis() - tiempoAnteriorComprobacion) >= 10000){
-        //efectoActual++;//Incremento el efecto
+        efectoActual++;//Incremento el efecto
         estadoEfectos = true;//Activo los efectos
         leds.clear();//Apago los leds
 
         if(audio.getStateMute() == true){
-            //estadoEfectos = false;//Desactivo los efectos
+            estadoEfectos = false;//Desactivo los efectos
         }
 
         if(efectoActual >= cantidadEfectos){
