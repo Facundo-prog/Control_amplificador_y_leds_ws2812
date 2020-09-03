@@ -13,7 +13,7 @@
 
 #include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
 #include "AudioControl.h"     // Libreria que controla el audio
-#include "Effects.h"          // Libreria que controla los efectos
+#include "Effects.h"          // Libreria que contiene los efectos
 #include <Arduino.h>
 
 
