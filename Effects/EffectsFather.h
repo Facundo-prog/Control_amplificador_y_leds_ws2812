@@ -3,23 +3,16 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include "IEffects.h"
 
 
-class IEffects{
-
-    public:
-        virtual void run(float value) = 0;
-};
-
-
-class EffectFather : public IEffects{
+class EffectsFather : public IEffects{
 
     public:
         // Constructor comun para todos los efectos
-        EffectFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue);
+        EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue);
 
     protected:
-
         //Variables comunes a todos los efectos
         Adafruit_NeoPixel* _pixels;
 

@@ -6,7 +6,7 @@
 #include "EffectsFather.h"
 
 
-class TransitionEffect : public EffectFather{
+class TransitionEffect : public EffectsFather{
 
     public:
         TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);// Constructor
@@ -21,7 +21,7 @@ class TransitionEffect : public EffectFather{
 };
 
 
-class WaveEffect : public EffectFather{
+class WaveEffect : public EffectsFather{
 
     public:
         WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -41,7 +41,7 @@ class WaveEffect : public EffectFather{
 
 
 
-class DotsDegradableEffect : public EffectFather{
+class DotsDegradableEffect : public EffectsFather{
 
     public:
         DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -59,7 +59,7 @@ class DotsDegradableEffect : public EffectFather{
 
 
 
-class WormEffect : public EffectFather{
+class WormEffect : public EffectsFather{
 
     public:
         WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -77,7 +77,7 @@ class WormEffect : public EffectFather{
 
 
 
-class RandomEffect : public EffectFather{
+class RandomEffect : public EffectsFather{
 
     public:
         RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -95,7 +95,7 @@ class RandomEffect : public EffectFather{
 
 
 
-class ReboundEffect : public EffectFather{
+class ReboundEffect : public EffectsFather{
 
     public:
         ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -112,7 +112,7 @@ class ReboundEffect : public EffectFather{
 
 
 
-class ShockEffect : public EffectFather{
+class ShockEffect : public EffectsFather{
 
     public:
         ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);
@@ -128,7 +128,7 @@ class ShockEffect : public EffectFather{
 
 
 
-class ScrollingDotsEffect : public EffectFather{
+class ScrollingDotsEffect : public EffectsFather{
 
     public:
         ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);

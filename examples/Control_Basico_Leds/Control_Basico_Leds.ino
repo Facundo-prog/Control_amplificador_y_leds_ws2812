@@ -53,7 +53,7 @@ ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2)
 
 
 //--------- Array de Efectos -----------//
-EffectFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
+EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
 
 
 void setup(){
@@ -93,3 +93,22 @@ void loop(){
         tiempoAnteriorComprobacion = millis();//Vuelvo a 0 la diferencia de timepo
     }
 }
+
+/*
+
+
+IEffects
+
+    -> EffectsFather
+
+        -> TransitionEffect
+        -> WaveEffect
+        -> DotsDegradableEffect
+        -> WormEffect
+        -> RandomEffect
+        -> ReboundEffect
+        -> ShockEffect
+        -> ScrollingDotsEffect
+
+
+*/

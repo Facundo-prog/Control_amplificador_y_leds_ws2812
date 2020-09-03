@@ -5,7 +5,7 @@
 
 
 
-TransitionEffect::TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+TransitionEffect::TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -81,7 +81,7 @@ void TransitionEffect::run(float valPico){
 
 
 
-WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -170,7 +170,7 @@ void WaveEffect::run(float valPico){
 
 
 
-DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -250,7 +250,7 @@ void DotsDegradableEffect::run(float valPico){
 
 
 
-WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -365,7 +365,7 @@ void WormEffect::run(float valPico){
 
 
 
-RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -423,7 +423,7 @@ void RandomEffect::run(float valPico){
 
 
 
-ReboundEffect::ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+ReboundEffect::ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -490,7 +490,7 @@ void ReboundEffect::run(float valPico){
 
 
 
-ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -575,7 +575,7 @@ void ShockEffect::run(float valPico){
 
 
 
-ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 
     for(int i=0;i < _cantidadLedsDesplazables;i++){
