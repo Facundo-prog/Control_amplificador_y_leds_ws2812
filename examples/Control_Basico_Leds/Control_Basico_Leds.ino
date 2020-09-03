@@ -93,22 +93,3 @@ void loop(){
         tiempoAnteriorComprobacion = millis();//Vuelvo a 0 la diferencia de timepo
     }
 }
-
-/*
-
-
-IEffects
-
-    -> EffectsFather
-
-        -> TransitionEffect
-        -> WaveEffect
-        -> DotsDegradableEffect
-        -> WormEffect
-        -> RandomEffect
-        -> ReboundEffect
-        -> ShockEffect
-        -> ScrollingDotsEffect
-
-
-*/

@@ -8,11 +8,9 @@
 
 class EffectsFather : public IEffects{
 
-    public:
-        // Constructor comun para todos los efectos
-        EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue);
-
     protected:
+        EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue);
+        
         //Variables comunes a todos los efectos
         Adafruit_NeoPixel* _pixels;
 
