@@ -13,11 +13,21 @@
 
 #include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
 #include "AudioControl.h"     // Libreria que controla el audio
-#include "Effects.h"          // Libreria que contiene los efectos
 #include <Arduino.h>
 
 
-//------Pines Utilizados ------//
+//-------- Incluyo los efectos que voy a usar -------//
+#include "TransitionEffect.h"
+#include "WaveEffect.h"
+#include "DotsDegradableEffect.h"
+#include "WormEffect.h"
+#include "RandomEffect.h"
+#include "ReboundEffect.h"
+#include "ShockEffect.h"
+#include "ScrollingDotsEffect.h"
+
+
+//------ Pines Utilizados ------//
 byte pinLeds = 3;
 byte pinLecturaAudio = A0;
 
