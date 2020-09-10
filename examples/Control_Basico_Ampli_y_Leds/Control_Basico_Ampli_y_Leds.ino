@@ -12,13 +12,23 @@
 */
 
 // ¡¡¡¡ IMPORTANTE !!!!
-// Es necesario tener instalada la libreria: Adafruit_NeoPixel.h en el mismo directorio que Effects.h
+// Es necesario tener instalada la libreria: Adafruit_NeoPixel.h
 
 #include "AmplifiedControl.h"  //Libreria que controla el amplificador
 #include "AudioControl.h"      //Libreria que obtiene el audio
-#include "Effects.h"           //Libreria que controla los leds
 #include <Adafruit_NeoPixel.h> //Libreria necesaria para controlar los leds
 #include <Arduino.h>
+
+
+//-------- Incluyo los efectos que voy a usar -------//
+#include "TransitionEffect.h"
+#include "WaveEffect.h"
+#include "DotsDegradableEffect.h"
+#include "WormEffect.h"
+#include "RandomEffect.h"
+#include "ReboundEffect.h"
+#include "ShockEffect.h"
+#include "ScrollingDotsEffect.h"
 
 
 //------Pines Utilizados ------//
@@ -30,6 +40,10 @@ byte pinSensorTemp = A1;
 
 
 //---------- Variables del programa ---------//
+float valorPico = 1;//Valor por encima del cual se considera un pico de audio
+float valorDecremento = 0.50;//Valor que determina la sensibilidad entre cada pico
+float value = 0;//Guardo temporalmente el valor de audio
+
 int cantidadLeds = 50;//La cantidad de leds se puede modificar (procure que la cantidad sea par)
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 unsigned long tiempoTemperatura = 0;//Variable donde guardamos el valor de millis para compararlo
@@ -46,18 +60,18 @@ Adafruit_NeoPixel leds(cantidadLeds, pinLeds, NEO_GRB + NEO_KHZ800);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect efect_1(&leds, cantidadLeds, 4, 0.15, 8);
-WaveEffect efect_2(&leds, cantidadLeds, 4, 0.15, 15);
-DotsDegradableEffect efect_3(&leds, cantidadLeds, 4, 0.30, 40);// No adaptado a millis
-WormEffect efect_4(&leds, cantidadLeds, 4, 0.15, 20);
-RandomEffect efect_5(&leds, cantidadLeds, 4, 0.15, 5);
-ReboundEffect efect_6(&leds, cantidadLeds, 4, 0.15, 40);
-ShockEffect efect_7(&leds, cantidadLeds, 4, 0.15, 5);
-ScrollingDotsEffect efect_8(&leds, cantidadLeds, 4, 0.15, 35);// No adaptado a millis
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
+WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
+RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
+ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
+ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 35);// No adaptado a millis
 
 
-//--------- Creo un array con los efectos ---------//
-IEffects* efectos[] = {&efect_1, &efect_2, &efect_3, &efect_4, &efect_5, &efect_6, &efect_7, &efect_8};
+//--------- Array de Efectos -----------//
+EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
 
 
 void setup() {
@@ -77,8 +91,10 @@ void setup() {
 
 void loop(){
 
+    value = audio.readAudio();
+
     if(estadoEfectos == true){
-        efectos[efectoActual]->run(audio.readAudio());//Actualizo el estado de los leds
+        efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
     
     if((millis() - tiempoTemperatura) >= 1000)
@@ -106,6 +122,7 @@ void loop(){
 
     if((millis() - tiempoCambioEfecto) >= 10000){
         efectoActual++;//Incremento el efecto
+        leds.clear();//Apago los leds
 
         if(efectoActual >= cantidadEfectos){
             efectoActual = 0;//Vuelvo a 0 el contador

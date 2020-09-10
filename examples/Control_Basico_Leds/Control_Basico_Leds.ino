@@ -8,7 +8,7 @@
 */
 
 // ¡¡¡¡ IMPORTANTE !!!!
-// Es necesario tener instalada la libreria: Adafruit_NeoPixel.h en el mismo directorio que Effects.h
+// Es necesario tener instalada la libreria: Adafruit_NeoPixel.h
 
 
 #include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
@@ -34,16 +34,15 @@ byte pinLecturaAudio = A0;
 
 //---------- Variables del programa ---------//
 int cantidadLeds = 40;//Determina la cantidad de leds a controlar
-float valorPico = 1;
-float valorDecremento = 0.50;
+float valorPico = 1;//Valor por encima del cual se considera un pico de audio
+float valorDecremento = 0.50;//Valor que determina la sensibilidad entre cada pico
+float value = 0;//Guardo temporalmente el valor de audio
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
-byte efectoActual = 7;//Determina el efecto que se esta generando
+byte efectoActual = 0;//Determina el efecto que se esta generando
 byte cantidadEfectos = 8;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
-
-float value = 0;//Guardo temporalmente el valor de audio
 
 
 //--------- Instancias de Objetos ---------//
