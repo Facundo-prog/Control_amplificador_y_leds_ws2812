@@ -1,4 +1,4 @@
--Metodos o funciones:
+-Metodos:
 
 + AudioControl(byte pinAudio);//Contructor de la libreria
 + readAudio();//Actualiza el estado de mute y devuelve el valor de audio leido
@@ -7,7 +7,7 @@
 + getStateMute();//Devuelve true si no se detecto audio y false si se detecto 
 
 
--Descripcion de la frecuencia de deteccion de audio:
+-Frecuencia de deteccion de audio:
 
 En la funcion 'setDetectionFrequency(int frequency)' se le pasa el valor de delay (en milisegundos) entre cada lectura de audio
 Cuanto menor es el numero se detectaran mejor las frecuencias altas y viceversa
@@ -26,6 +26,6 @@ Tabla de relacion:
     20000 =  50Hz  Frecuencias bajas
 
 
-Ejemplo: Frecuencia que queremos detectar: 5Khz
+Ejemplo: Frecuencia que queremos detectar: 5Khz (5000Hz)
                                     
 T = 1/5000Hz => 0.0002s => 0.0002s x 1.000.000 => 200us
