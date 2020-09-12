@@ -28,14 +28,14 @@
 
 
 //------ Pines Utilizados ------//
-byte pinLeds = 3;
+byte pinLeds = 2;
 byte pinLecturaAudio = A0;
 
 
 //---------- Variables del programa ---------//
-int cantidadLeds = 40;//Determina la cantidad de leds a controlar
+int cantidadLeds = 100;//Determina la cantidad de leds a controlar
 float valorPico = 1;//Valor por encima del cual se considera un pico de audio
-float valorDecremento = 0.50;//Valor que determina la sensibilidad entre cada pico
+float valorDecremento = 0.15;//Valor que se descuenta cuando no se detecta un pico
 float value = 0;//Guardo temporalmente el valor de audio
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
@@ -51,14 +51,14 @@ AudioControl audio(pinLecturaAudio);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 10);
 WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
 DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
 WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
 RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
 ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 35);// No adaptado a millis
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
@@ -68,7 +68,7 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 void setup(){
 
     audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
-    audio.setDetectionFrequency(5000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
+    audio.setDetectionFrequency(2500);//Seteo la frecuencia de deteccion. Leer propiedades.txt
 
     leds.begin();//Inicializo los leds
     leds.clear();//Apago los leds
@@ -82,7 +82,7 @@ void loop(){
 
     value = audio.readAudio();//Actualizo el valor de audio
 
-    if(estadoEfectos == true){
+    if(estadoEfectos == true && value < 20){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
 

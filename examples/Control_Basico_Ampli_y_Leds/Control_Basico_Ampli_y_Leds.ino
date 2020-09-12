@@ -41,7 +41,7 @@ byte pinSensorTemp = A1;
 
 //---------- Variables del programa ---------//
 float valorPico = 1;//Valor por encima del cual se considera un pico de audio
-float valorDecremento = 0.50;//Valor que determina la sensibilidad entre cada pico
+float valorDecremento = 0.15;//Valor que se descuenta cuando no se detecta un pico
 float value = 0;//Guardo temporalmente el valor de audio
 
 int cantidadLeds = 50;//La cantidad de leds se puede modificar (procure que la cantidad sea par)
@@ -60,14 +60,14 @@ Adafruit_NeoPixel leds(cantidadLeds, pinLeds, NEO_GRB + NEO_KHZ800);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 15);
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 10);
 WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
 DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
 WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
 RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
 ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 35);// No adaptado a millis
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
@@ -93,7 +93,7 @@ void loop(){
 
     value = audio.readAudio();
 
-    if(estadoEfectos == true){
+    if(estadoEfectos == true && value < 20){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
     
