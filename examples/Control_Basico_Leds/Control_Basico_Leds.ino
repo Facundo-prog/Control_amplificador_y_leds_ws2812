@@ -33,7 +33,7 @@ byte pinLecturaAudio = A0;
 
 
 //---------- Variables del programa ---------//
-int cantidadLeds = 100;//Determina la cantidad de leds a controlar
+int cantidadLeds = 50;//Determina la cantidad de leds a controlar
 float valorPico = 1;//Valor por encima del cual se considera un pico de audio
 float valorDecremento = 0.15;//Valor que se descuenta cuando no se detecta un pico
 float value = 0;//Guardo temporalmente el valor de audio
