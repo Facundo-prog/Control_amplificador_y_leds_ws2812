@@ -35,7 +35,8 @@ byte pinLecturaAudio = A0;
 //---------- Variables del programa ---------//
 int cantidadLeds = 50;//Determina la cantidad de leds a controlar
 float valorPico = 1;//Valor por encima del cual se considera un pico de audio
-float valorDecremento = 0.15;//Valor que se descuenta cuando no se detecta un pico
+float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
+float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
@@ -51,14 +52,14 @@ AudioControl audio(pinLecturaAudio);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 10);
-WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
-DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
-WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
-RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
-ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 30);// No adaptado a millis
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 10);
+WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 15);
+DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), multiplicador, 40);// No adaptado a millis
+WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 20);
+RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
+ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 40);
+ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), multiplicador, 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
