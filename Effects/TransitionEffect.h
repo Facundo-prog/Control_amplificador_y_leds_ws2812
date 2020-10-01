@@ -9,7 +9,7 @@
 class TransitionEffect : public EffectsFather{
 
     public:
-        TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect);// Constructor
+        TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);// Constructor
         void run(float value); 
         
     private:

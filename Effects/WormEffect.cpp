@@ -4,7 +4,7 @@
 #include "EffectsFather.h"
 
 
-WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue){
+WormEffect::WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -90,12 +90,12 @@ void WormEffect::run(float valPico){
     }
 
 
-    if(valPico < _sensibilidadPico){return;}
+    if(valPico <= _sensibilidadPico){return;}
 
 
     if (valPico > _pico && _iniciarSecuencia == false){
 
-        _pico = valPico * valPico;
+        _pico = valPico * _multiplicador;
         _iniciarSecuencia = true;
 
         _pixel = random(0, _numPixel);
