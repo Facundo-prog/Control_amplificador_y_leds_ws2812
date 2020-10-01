@@ -1,7 +1,7 @@
 # Control de audio, amplificador y leds ws2812b
 ## Autor: Facundo Carroz
 
-### Consta de dos librerias independientes, una para el control de un amplificador y otra para la lectura de audio. Tambien se incluye un paquete de librerias que contiene todos los efectos de luz. Diseñado para Arduino Uno, Mega y otros similares que funcionen a una frecuencia de 16Mhz. 
+### Consta de dos librerias independientes, una para el control de un amplificador y otra para la lectura de audio. Tambien se incluye un paquete de librerias que contiene todos los efectos de luz. Diseñado para Arduino Uno, Mega, Pro mini y otros similares que funcionen a una frecuencia de 16Mhz. 
 
 ## Libreria AudioControl
 - El codigo se encarga de analizar el audio
