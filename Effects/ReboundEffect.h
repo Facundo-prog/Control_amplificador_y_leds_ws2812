@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "EffectsFather.h"
+#include <EffectsFather.h>
 
 class ReboundEffect : public EffectsFather{
 

@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "AudioControl.h"
+#include <AudioControl.h>
 
 
 AudioControl::AudioControl(byte pinAudio){
@@ -41,11 +41,11 @@ float AudioControl::getAudio(){
         _valorAudioAnterior = val;
         _timpoDeteccionAudio = millis();
 
-        if(diferencia >= 1.0 && _estadoMute == true){
+        if(diferencia >= 1 && _estadoMute == true){
             _estadoMute = false;
         }
 
-        return max(0, diferencia);
+        return (0)>(diferencia)?(0):(diferencia);
     }
 
     return 0;
@@ -57,7 +57,7 @@ float AudioControl::getAudio(){
 float AudioControl::readAudio(){
 
     float valFinal = getAudio();
-    if(_deteccionMute == true){deteccionDeSilencio(valFinal);}
+    if(_deteccionMute == true){deteccionDeSilencio(valFinal);}else{_estadoMute = false;}
     return valFinal;
 }
 
@@ -66,11 +66,12 @@ float AudioControl::readAudio(){
 
 void AudioControl::deteccionDeSilencio(float valFinal){
 
-    if(millis() > _tiempoMute + _frecuenciaDeteccionSilencio){
+    if(valFinal >= 1.0){
+        _valorMute += valFinal;
+        _estadoMute = false;
+    }
 
-        if(valFinal >= 1.0){
-            _valorMute += valFinal;
-        }
+    if(millis() > _tiempoMute + _frecuenciaDeteccionSilencio){
 
         if((_valorMute <= _valorDeRuido) && (_estadoMute == false)){
             _estadoMute = true;

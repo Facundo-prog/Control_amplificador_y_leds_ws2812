@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "AmplifiedControl.h"
+#include <AmplifiedControl.h>
 
 
 AmplifiedControl::AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan){

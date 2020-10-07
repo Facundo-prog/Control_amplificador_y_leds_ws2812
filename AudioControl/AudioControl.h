@@ -25,7 +25,7 @@ class AudioControl{
         float _valorMute = 0.0;
         bool _estadoMute = false;
         bool _deteccionMute = true;
-        int _frecuenciaDeteccion = 1650;
+        int _frecuenciaDeteccion = 2500;
         int _frecuenciaDeteccionSilencio = 10000;
         int _valorDeRuido = 10;
 

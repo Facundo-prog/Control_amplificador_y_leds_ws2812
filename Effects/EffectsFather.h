@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "IEffects.h"
+#include <IEffects.h>
 
 
 class EffectsFather : public IEffects{
@@ -20,7 +20,7 @@ class EffectsFather : public IEffects{
         float _pico = 0;
         float _sensibilidadPico = 1;
         float _multiplicador = 6;
-        float _valorDecrementoEntrePicos = 0.15;
+        float _valorDecrementoEntrePicos = 0.05;
         byte _r;
         byte _g;
         byte _b;

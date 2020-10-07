@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "TransitionEffect.h"
-#include "EffectsFather.h"
+#include <TransitionEffect.h>
+#include <EffectsFather.h>
 
 
 

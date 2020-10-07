@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 
-
 class AmplifiedControl
 {
     public:

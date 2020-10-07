@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "ScrollingDotsEffect.h"
-#include "EffectsFather.h"
+#include <ScrollingDotsEffect.h>
+#include <EffectsFather.h>
 
 
 ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
