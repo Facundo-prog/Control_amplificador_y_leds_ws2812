@@ -12,19 +12,19 @@
 
 
 #include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
-#include "AudioControl.h"     // Libreria que controla el audio
+#include <AudioControl.h>     // Libreria que controla el audio
 #include <Arduino.h>
 
 
 //-------- Incluyo los efectos que voy a usar -------//
-#include "TransitionEffect.h"
-#include "WaveEffect.h"
-#include "DotsDegradableEffect.h"
-#include "WormEffect.h"
-#include "RandomEffect.h"
-#include "ReboundEffect.h"
-#include "ShockEffect.h"
-#include "ScrollingDotsEffect.h"
+#include <TransitionEffect.h>
+#include <WaveEffect.h>
+#include <DotsDegradableEffect.h>
+#include <WormEffect.h>
+#include <RandomEffect.h>
+#include <ReboundEffect.h>
+#include <ShockEffect.h>
+#include <ScrollingDotsEffect.h>
 
 
 //------ Pines Utilizados ------//
@@ -75,7 +75,7 @@ void setup(){
     leds.clear();//Apago los leds
     leds.setBrightness(brilloLeds);//Seteo el brillo
 
-    randomSeed(millis());
+    randomSeed(millis());//Seteo la semilla de la funcion random
 }   
 
 
@@ -83,7 +83,7 @@ void loop(){
 
     value = audio.readAudio();//Actualizo el valor de audio
 
-    if(estadoEfectos == true && value < 20){
+    if(estadoEfectos == true){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
 
