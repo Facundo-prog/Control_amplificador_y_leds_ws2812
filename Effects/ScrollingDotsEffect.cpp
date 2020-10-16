@@ -34,7 +34,6 @@ void ScrollingDotsEffect::run(float valPico){
         {
             if(_ledsDesplazables[i] > posMaxima){
                 _ledsDesplazables[i] = 0;
-                _pixels->setPixelColor(_ledsDesplazables[i], 0, 0, 0);
             }
             else if(_ledsDesplazables[i] > 0){
                 _pixels->setPixelColor(_ledsDesplazables[i]-1, _r, _g, _b);
