@@ -18,11 +18,15 @@ AmplifiedControl::AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan
 
 
 void AmplifiedControl::setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh){
-    _tempLow = tempLow;
-    _tempHigh = tempHigh;
-    _tempVeryHigh = tempVeryHigh;
+    if(_tempLow > -140 && _tempLow < 140){_tempLow = tempLow;}
+    if(_tempHigh > -140 && _tempHigh < 140){_tempHigh = tempHigh;}
+    if(_tempVeryHigh > -140 && _tempVeryHigh < 140){_tempVeryHigh = tempVeryHigh;}
 }
 
+void AmplifiedControl::setSetingsAdc(float maximumVoltajeAdc, int resolution){
+    _maximumVoltajeAdc = maximumVoltajeAdc;
+    _resolution = resolution;
+}
 
 void AmplifiedControl::mute(bool value){
 
@@ -36,14 +40,13 @@ void AmplifiedControl::mute(bool value){
     }
 }
 
-
 float AmplifiedControl::readTemperature(){
 
     float reading;
     float temp;
 
     reading = analogRead(_pinSensorTemp);
-    temp = (reading * 5 * 100) / 1024;
+    temp = ((reading * _maximumVoltajeAdc) * 100) / _resolution;
     
     if(temp > _tempVeryHigh) {
         _stateTempVeryHigh = true;
@@ -62,9 +65,6 @@ float AmplifiedControl::readTemperature(){
     
     return temp;
 }
-
-
-
 
 bool AmplifiedControl::getStateTempVeryHigh(){
     return _stateTempVeryHigh;

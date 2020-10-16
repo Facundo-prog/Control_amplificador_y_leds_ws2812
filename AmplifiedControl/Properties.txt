@@ -2,6 +2,7 @@
 
 + AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan); //Constructor de la libreria
 + setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh); //Mas abajo se explica
++ setSetingsAdc(float maximumVoltajeAdc, int resolution);//Setea el voltaje maximo del ADC y su resolucion
 + mute(bool value); //Setea el mute en true o false
 + readTemperature(); //Toma una medicion de temperatura y la devuelve
 + getStateTempVeryHigh(); //Devuelve true si la temperatura es mayor a la seteada, de lo contrario false

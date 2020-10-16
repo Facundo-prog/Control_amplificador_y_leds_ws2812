@@ -8,6 +8,7 @@ class AmplifiedControl
     public:
         AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan);
         void setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh);
+        void setSetingsAdc(float maximumVoltajeAdc, int resolution);
         void mute(bool value);
         float readTemperature();
         bool getStateTempVeryHigh();
@@ -21,6 +22,8 @@ class AmplifiedControl
         int _tempLow;
         int _tempHigh;
         int _tempVeryHigh;
+        float _maximumVoltajeAdc = 5.0;
+        int _resolution = 1024;
 };
 
 #endif
