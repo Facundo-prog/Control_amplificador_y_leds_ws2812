@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include <AmplifiedControl.h>
+#include <AmplifierControl.h>
 
 
-AmplifiedControl::AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan){
+AmplifierControl::AmplifierControl(byte pinMute, byte pinSensorTemp, byte pinFan){
 
     _pinMute = pinMute;
     _pinSensorTemp = pinSensorTemp;
@@ -17,18 +17,18 @@ AmplifiedControl::AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan
 }
 
 
-void AmplifiedControl::setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh){
+void AmplifierControl::setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh){
     if(_tempLow > -140 && _tempLow < 140){_tempLow = tempLow;}
     if(_tempHigh > -140 && _tempHigh < 140){_tempHigh = tempHigh;}
     if(_tempVeryHigh > -140 && _tempVeryHigh < 140){_tempVeryHigh = tempVeryHigh;}
 }
 
-void AmplifiedControl::setSetingsAdc(float maximumVoltajeAdc, int resolution){
+void AmplifierControl::setSetingsAdc(float maximumVoltajeAdc, int resolution){
     _maximumVoltajeAdc = maximumVoltajeAdc;
     _resolution = resolution;
 }
 
-void AmplifiedControl::mute(bool value){
+void AmplifierControl::mute(bool value){
 
     if(_muteState == false && value == true){
         digitalWrite(_pinMute, HIGH);
@@ -40,7 +40,7 @@ void AmplifiedControl::mute(bool value){
     }
 }
 
-float AmplifiedControl::readTemperature(){
+float AmplifierControl::readTemperature(){
 
     float reading;
     float temp;
@@ -66,6 +66,6 @@ float AmplifiedControl::readTemperature(){
     return temp;
 }
 
-bool AmplifiedControl::getStateTempVeryHigh(){
+bool AmplifierControl::getStateTempVeryHigh(){
     return _stateTempVeryHigh;
 }

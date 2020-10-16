@@ -1,12 +1,12 @@
-#ifndef AmplifiedControl_h
-#define AmplifiedControl_h
+#ifndef AmplifierControl_h
+#define AmplifierControl_h
 
 #include <Arduino.h>
 
-class AmplifiedControl
+class AmplifierControl
 {
     public:
-        AmplifiedControl(byte pinMute, byte pinSensorTemp, byte pinFan);
+        AmplifierControl(byte pinMute, byte pinSensorTemp, byte pinFan);
         void setTemperatureRange(int tempLow, int tempHigh, int tempVeryHigh);
         void setSetingsAdc(float maximumVoltajeAdc, int resolution);
         void mute(bool value);
