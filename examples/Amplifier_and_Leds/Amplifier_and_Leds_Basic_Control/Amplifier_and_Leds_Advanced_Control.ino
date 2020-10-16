@@ -14,7 +14,7 @@
 // ¡¡¡¡ IMPORTANTE !!!!
 // Es necesario tener instalada la libreria: Adafruit_NeoPixel.h
 
-#include "AmplifiedControl.h"  //Libreria que controla el amplificador
+#include "AmplifierControl.h"  //Libreria que controla el amplificador
 #include "AudioControl.h"      //Libreria que obtiene el audio
 #include <Adafruit_NeoPixel.h> //Libreria necesaria para controlar los leds
 #include <Arduino.h>
@@ -40,8 +40,9 @@ byte pinSensorTemp = A1;
 
 
 //---------- Variables del programa ---------//
-float valorPico = 1;//Valor por encima del cual se considera un pico de audio
-float valorDecremento = 0.15;//Valor que se descuenta cuando no se detecta un pico
+float valorPico = 0.9;//Valor por encima del cual se considera un pico de audio
+float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
+float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
 
 int cantidadLeds = 50;//La cantidad de leds se puede modificar (procure que la cantidad sea par)
@@ -54,20 +55,20 @@ byte cantidadEfectos = 8;//Cantidad de efectos
 
 
 //--------- Instancias de Objetos ---------//
-AmplifiedControl ampli(pinMute, pinSensorTemp, pinVentilador);
+AmplifierControl ampli(pinMute, pinSensorTemp, pinVentilador);
 AudioControl audio(pinLecturaAudio);
 Adafruit_NeoPixel leds(cantidadLeds, pinLeds, NEO_GRB + NEO_KHZ800);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, 10);
-WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, 15);
-DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), 40);// No adaptado a millis
-WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, 20);
-RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, 40);
-ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), 30);// No adaptado a millis
+TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 10);
+WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 15);
+DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), round(multiplicador/2), 35);// No adaptado a millis
+WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 20);
+RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, round(multiplicador/1.5), 5);
+ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 40);
+ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), round(multiplicador/2), 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
@@ -78,10 +79,11 @@ void setup() {
 
     Serial.begin(115200);//Inicializo el puerto serial
     ampli.setTemperatureRange(35, 45, 80);//Temp minima 35°, temp alta 45°, temp muy alta 80° 
+    ampli.setSetingsAdc(5.0, 1024);//Definimos el voltaje maximo del ADC y su resolucion
     ampli.mute(false);//El mute esta apagado
 
     audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio/no audio
-    audio.setDetectionFrequency(5000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
+    audio.setDetectionFrequency(1000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
 
     leds.begin();//Inicializo los leds
     leds.clear();//Apago los leds

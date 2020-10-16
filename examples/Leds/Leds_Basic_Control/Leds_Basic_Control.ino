@@ -10,7 +10,6 @@
 // ¡¡¡¡ IMPORTANTE !!!!
 // Es necesario tener instalada la libreria: Adafruit_NeoPixel.h
 
-
 #include <Adafruit_NeoPixel.h>// Libreria necesaria para controlar los leds
 #include <AudioControl.h>     // Libreria que controla el audio
 #include <Arduino.h>
@@ -34,11 +33,7 @@ byte pinLecturaAudio = A0;
 
 //---------- Variables del programa ---------//
 int cantidadLeds = 50;//Determina la cantidad de leds a controlar
-float valorPico = 1;//Valor por encima del cual se considera un pico de audio
-float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
-float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
-byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
 byte efectoActual = 0;//Determina el efecto que se esta generando
@@ -52,14 +47,14 @@ AudioControl audio(pinLecturaAudio);
 
 
 //-------- Inicializacion de los efectos -----------//
-TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 10);
-WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 15);
-DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*2), multiplicador, 40);// No adaptado a millis
-WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 20);
-RandomEffect effect_5(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
-ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 40);
-ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*2), multiplicador, 30);// No adaptado a millis
+TransitionEffect effect_1(&leds, cantidadLeds);
+WaveEffect effect_2(&leds, cantidadLeds);
+DotsDegradableEffect effect_3(&leds, cantidadLeds);// No adaptado a millis
+WormEffect effect_4(&leds, cantidadLeds);
+RandomEffect effect_5(&leds, cantidadLeds);
+ReboundEffect effect_6(&leds, cantidadLeds);
+ShockEffect effect_7(&leds, cantidadLeds);
+ScrollingDotsEffect effect_8(&leds, cantidadLeds);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
@@ -68,12 +63,8 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 
 void setup(){
 
-    audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
-    audio.setDetectionFrequency(2500);//Seteo la frecuencia de deteccion. Leer propiedades.txt
-
     leds.begin();//Inicializo los leds
-    leds.clear();//Apago los leds
-    leds.setBrightness(brilloLeds);//Seteo el brillo
+    leds.clear();//Limpio la tira
 
     randomSeed(millis());//Seteo la semilla de la funcion random
 }   
