@@ -9,6 +9,7 @@
 class DotsDegradableEffect : public EffectsFather{
 
     public:
+        DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
         DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
         void run(float value);
         
@@ -17,7 +18,7 @@ class DotsDegradableEffect : public EffectsFather{
         //Variables del efecto
         unsigned long _tiempoColorPuntosDegradables = 0;
         int _posicionLed = 0;
-        bool _iniciarSecuencia = false;
+        bool _estadoIncremento = false;
         int _cantidadMaxLeds = 50;//Cantidad de Leds / 10
         byte _divLedsEfectoVoz[2][50];
 };

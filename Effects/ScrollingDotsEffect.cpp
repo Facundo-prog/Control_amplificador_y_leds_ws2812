@@ -4,6 +4,14 @@
 #include <EffectsFather.h>
 
 
+ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds) : EffectsFather(pixels, quantityLeds){
+    _delayEfecto = 30;
+    
+    for(int i=0;i < _cantidadLedsDesplazables;i++){
+        _ledsDesplazables[i] = 0;
+    }
+}
+
 ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 
@@ -34,6 +42,7 @@ void ScrollingDotsEffect::run(float valPico){
         {
             if(_ledsDesplazables[i] > posMaxima){
                 _ledsDesplazables[i] = 0;
+                _pixels->setPixelColor(_ledsDesplazables[i], 0, 0, 0);
             }
             else if(_ledsDesplazables[i] > 0){
                 _pixels->setPixelColor(_ledsDesplazables[i]-1, _r, _g, _b);

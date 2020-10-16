@@ -4,6 +4,8 @@
 #include <EffectsFather.h>
 
 
+RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds) : EffectsFather(pixels, quantityLeds){_delayEfecto = 5;}
+
 RandomEffect::RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }

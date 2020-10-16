@@ -8,6 +8,7 @@
 class ScrollingDotsEffect : public EffectsFather{
 
     public:
+        ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
         ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
         void run(float value);
         
@@ -17,6 +18,8 @@ class ScrollingDotsEffect : public EffectsFather{
         unsigned long _tiempoColorPuntosDesplazables = 0; 
         const int _cantidadLedsDesplazables = 250;//Cantidad de Leds / 2
         int _ledsDesplazables[250];
+        int _posicionLed = 0;
+        bool _estadoIncremento = false;
 };
 
 #endif

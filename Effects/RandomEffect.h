@@ -8,6 +8,7 @@
 class RandomEffect : public EffectsFather{
 
     public:
+        RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
         RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
         void run(float value);
         

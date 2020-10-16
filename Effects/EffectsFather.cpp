@@ -2,6 +2,10 @@
 #include <Adafruit_NeoPixel.h>
 #include <EffectsFather.h>
 
+EffectsFather::EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds){
+    _pixels = pixels;
+    if(quantityLeds > 0){_numPixel = quantityLeds;}
+}
 
 EffectsFather::EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier){
     _pixels = pixels;

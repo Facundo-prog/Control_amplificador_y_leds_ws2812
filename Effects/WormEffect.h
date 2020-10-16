@@ -8,6 +8,7 @@
 class WormEffect : public EffectsFather{
 
     public:
+        WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
         WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
         void run(float value);
         
@@ -18,7 +19,6 @@ class WormEffect : public EffectsFather{
         int _posicionLed = 0;
         bool _incrementando = true;
         byte _pixel;
-
 };
 
 #endif

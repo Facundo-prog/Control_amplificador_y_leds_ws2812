@@ -4,6 +4,8 @@
 #include <EffectsFather.h>
 
 
+DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds) : EffectsFather(pixels, quantityLeds){_delayEfecto = 35;}
+
 DotsDegradableEffect::DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }

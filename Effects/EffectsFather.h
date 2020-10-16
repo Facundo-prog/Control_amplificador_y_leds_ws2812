@@ -9,6 +9,7 @@
 class EffectsFather : public IEffects{
 
     protected:
+        EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds);
         EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier);
         
         //Variables comunes a todos los efectos

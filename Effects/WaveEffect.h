@@ -9,6 +9,7 @@
 class WaveEffect : public EffectsFather{
 
     public:
+        WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
         WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
         void run(float value);
         
