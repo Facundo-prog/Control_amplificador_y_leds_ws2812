@@ -18,7 +18,7 @@ class EffectsFather : public IEffects{
         int _numPixel = 0;
         int _delayEfecto = 0;
         float _pico = 0;
-        float _sensibilidadPico = 1;
+        float _sensibilidadPico = 0.9;
         float _multiplicador = 6;
         float _valorDecrementoEntrePicos = 0.05;
         byte _r;
