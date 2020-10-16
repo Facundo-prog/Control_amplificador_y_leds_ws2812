@@ -2,7 +2,18 @@ Clase Effects.h
 
 -Todos los efectos requieren los mismos parametros para el constructor, y tienen el mismo metodo 'run()'
 
-Constructores: 
+Constructores simplificados:
+    + TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + WormEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + RandomEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+    + ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
+
+
+Constructores completos: 
     + TransitionEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
     + WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
     + DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
