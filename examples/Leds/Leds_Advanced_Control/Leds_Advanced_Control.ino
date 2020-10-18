@@ -75,8 +75,6 @@ void setup(){
     leds.begin();//Inicializo los leds
     leds.clear();//Limpio la tira
     leds.setBrightness(brilloLeds);//Seteo el brillo
-
-    randomSeed(millis());//Seteo la semilla de la funcion random
 }   
 
 

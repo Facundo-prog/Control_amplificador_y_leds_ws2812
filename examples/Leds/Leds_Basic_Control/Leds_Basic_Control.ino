@@ -65,8 +65,6 @@ void setup(){
 
     leds.begin();//Inicializo los leds
     leds.clear();//Limpio la tira
-
-    randomSeed(millis());//Seteo la semilla de la funcion random
 }   
 
 
