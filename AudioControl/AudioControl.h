@@ -9,12 +9,12 @@ class AudioControl{
         AudioControl(byte pinAudio);
         float readAudio();
         void setDetectionFrequency(int frequency);
-        void setDetectionSilence(bool value, int readingFrequency, int ruinValue);
+        void setDetectionSilence(bool value, int readingFrequency, int ruinValue, float minimumPeakValue);
         bool getStateMute();
         
     private:
         //Funciones internas
-        void deteccionDeSilencio(float valFinal);
+        void deteccionDeSilencio();
         float getAudio();
 
         //Pines
@@ -23,6 +23,7 @@ class AudioControl{
         //Deteccion de audio
         float _valorAudioAnterior;
         float _valorMute = 0.0;
+        float _valorMinimoPico = 1;
         bool _estadoMute = false;
         bool _deteccionMute = true;
         int _frecuenciaDeteccion = 2500;

@@ -12,21 +12,17 @@ void AudioControl::setDetectionFrequency(int frequency){
 }
 
 
-void AudioControl::setDetectionSilence(bool value, int readingFrequency, int ruinValue){
+void AudioControl::setDetectionSilence(bool value, int readingFrequency, int ruinValue, float minimumPeakValue){
     _deteccionMute = value;
     if(readingFrequency >= 0){_frecuenciaDeteccionSilencio = readingFrequency;}
     if(ruinValue >= 0){_valorDeRuido = ruinValue;}
+    if(minimumPeakValue >= 0){_valorMinimoPico = minimumPeakValue;}
 }
 
 
 bool AudioControl::getStateMute(){
     return _estadoMute;
 }
-
-
-
-
-
 
 
 float AudioControl::getAudio(){
@@ -41,35 +37,25 @@ float AudioControl::getAudio(){
         _valorAudioAnterior = val;
         _timpoDeteccionAudio = millis();
 
-        if(diferencia >= 1 && _estadoMute == true){
+        if(diferencia >= _valorMinimoPico && _deteccionMute == true){
             _estadoMute = false;
+            _valorMute += diferencia;
         }
-
         return (0)>(diferencia)?(0):(diferencia);
     }
-
     return 0;
 }
-
-
 
 
 float AudioControl::readAudio(){
 
     float valFinal = getAudio();
-    if(_deteccionMute == true){deteccionDeSilencio(valFinal);}else{_estadoMute = false;}
+    if(_deteccionMute == true){deteccionDeSilencio();}else{_estadoMute = false;}
     return valFinal;
 }
 
 
-
-
-void AudioControl::deteccionDeSilencio(float valFinal){
-
-    if(valFinal >= 1.0){
-        _valorMute += valFinal;
-        _estadoMute = false;
-    }
+void AudioControl::deteccionDeSilencio(){
 
     if(millis() > _tiempoMute + _frecuenciaDeteccionSilencio){
 
