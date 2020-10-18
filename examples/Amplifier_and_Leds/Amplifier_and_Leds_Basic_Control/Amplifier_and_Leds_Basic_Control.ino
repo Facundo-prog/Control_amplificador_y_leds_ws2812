@@ -83,7 +83,7 @@ void loop(){
 
     value = audio.readAudio();
 
-    if(estadoEfectos == true && value < 20){
+    if(estadoEfectos == true){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
     

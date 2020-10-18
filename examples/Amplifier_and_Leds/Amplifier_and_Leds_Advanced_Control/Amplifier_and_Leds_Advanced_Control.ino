@@ -41,6 +41,7 @@ byte pinSensorTemp = A1;
 
 //---------- Variables del programa ---------//
 float valorPico = 0.9;//Valor por encima del cual se considera un pico de audio
+float minimoPico = 0.9;//Valor de diferencia entre lecturas que se toma como un pico de audio
 float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
 float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
@@ -82,8 +83,8 @@ void setup() {
     ampli.setSetingsAdc(5.0, 1024);//Definimos el voltaje maximo del ADC y su resolucion
     ampli.mute(false);//El mute esta apagado
 
-    audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio/no audio
-    audio.setDetectionFrequency(1000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
+    audio.setDetectionSilence(true, 10000, 10, minimoPico);//Activo la deteccion silencio/no audio
+    audio.setDetectionFrequency(1650);//Seteo la frecuencia de deteccion. Leer propiedades.txt
 
     leds.begin();//Inicializo los leds
     leds.clear();//Apago los leds
@@ -95,7 +96,7 @@ void loop(){
 
     value = audio.readAudio();
 
-    if(estadoEfectos == true && value < 20){
+    if(estadoEfectos == true){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
     

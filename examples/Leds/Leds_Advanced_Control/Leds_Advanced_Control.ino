@@ -35,6 +35,7 @@ byte pinLecturaAudio = A0;
 //---------- Variables del programa ---------//
 int cantidadLeds = 50;//Determina la cantidad de leds a controlar
 float valorPico = 0.9;//Valor por encima del cual se considera un pico de audio
+float minimoPico = 0.9;//Valor de diferencia entre lecturas que se toma como un pico de audio
 float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
 float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
@@ -68,8 +69,8 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 
 void setup(){
 
-    audio.setDetectionSilence(true, 10000, 10);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
-    audio.setDetectionFrequency(1000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
+    audio.setDetectionSilence(true, 10000, 10, minimoPico);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
+    audio.setDetectionFrequency(2500);//Seteo la frecuencia de deteccion. Leer propiedades.txt
 
     leds.begin();//Inicializo los leds
     leds.clear();//Limpio la tira
