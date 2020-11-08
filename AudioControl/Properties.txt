@@ -14,16 +14,16 @@ Cuanto menor es el numero se detectaran mejor las frecuencias altas y viceversa
 
 Tabla de relacion:
 
-    Frecuencia = Hertz
-    500        = 2Khz   Frecuencias altas
-    1000       = 1Khz
-    1250       = 800Hz
-    1650       = 600Hz
-    2500       = 400Hz
-    3750       = 266Hz
-    5000       = 200Hz 
-    10000      = 100Hz
-    20000      =  50Hz  Frecuencias bajas
+    Delay = Hertz
+    500   =  2Khz   Frecuencias altas
+    1000  =  1Khz
+    1250  = 800Hz
+    1650  = 600Hz
+    2500  = 400Hz
+    3750  = 266Hz
+    5000  = 200Hz 
+    10000 = 100Hz
+    20000 =  50Hz  Frecuencias bajas
 
 
 Ejemplo: Frecuencia que queremos detectar: 5Khz (5000Hz)
