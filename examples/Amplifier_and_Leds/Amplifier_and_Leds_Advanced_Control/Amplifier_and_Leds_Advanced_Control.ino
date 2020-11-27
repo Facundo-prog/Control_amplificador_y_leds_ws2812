@@ -64,12 +64,12 @@ Adafruit_NeoPixel leds(cantidadLeds, pinLeds, NEO_GRB + NEO_KHZ800);
 //-------- Inicializacion de los efectos -----------//
 TransitionEffect effect_1(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 10);
 WaveEffect effect_2(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 15);
-DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, (valorDecremento*3), multiplicador, 35);// No adaptado a millis
+DotsDegradableEffect effect_3(&leds, cantidadLeds, valorPico, round(valorDecremento*2), multiplicador, 35);// No adaptado a millis
 WormEffect effect_4(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 20);
-RandomEffect effect_5(&leds, cantidadLeds, valorPico, (valorDecremento*2), multiplicador, 5);
+RandomEffect effect_5(&leds, cantidadLeds, valorPico, round(valorDecremento*2), multiplicador, 5);
 ReboundEffect effect_6(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorPico, valorDecremento, multiplicador, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, (valorDecremento*3), multiplicador, 30);// No adaptado a millis
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorPico, round(valorDecremento*2), multiplicador, 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
