@@ -72,7 +72,6 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 
 
 void setup() {
-
     Serial.begin(115200);//Inicializo el puerto serial
     leds.begin();//Inicializo los leds
     leds.clear();//Limpio la tira
@@ -87,8 +86,7 @@ void loop(){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
     
-    if((millis() - tiempoTemperatura) >= 1000)
-    {
+    if((millis() - tiempoTemperatura) >= 1000){
         Serial.println(ampli.readTemperature());//Actualizo el estado de la temperatura
         estadoEfectos = true;//Enciendo los efectos
 

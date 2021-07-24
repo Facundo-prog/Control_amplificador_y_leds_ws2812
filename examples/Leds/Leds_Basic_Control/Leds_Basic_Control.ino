@@ -62,7 +62,6 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 
 
 void setup(){
-
     leds.begin();//Inicializo los leds
     leds.clear();//Limpio la tira
 }   
