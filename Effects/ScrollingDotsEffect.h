@@ -9,7 +9,7 @@ class ScrollingDotsEffect : public EffectsFather{
 
     public:
         ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
-        ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
+        ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect);
         void run(float value);
         
     private:

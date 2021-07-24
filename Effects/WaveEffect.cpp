@@ -6,7 +6,7 @@
 
 WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds) : EffectsFather(pixels, quantityLeds){_delayEfecto = 15;}
 
-WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
+WaveEffect::WaveEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, decrementValue, minimumPeakValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -62,12 +62,11 @@ void WaveEffect::run(float valPico){
     }
 
 
-    if(valPico <= _sensibilidadPico){return;}
+    if(valPico <= (_pico * _multiplicador) || valPico < _minimoPico){return;}
+        
+    if(valPico > _pico && _iniciarSecuencia == false){
 
-
-    if (valPico > _pico && _iniciarSecuencia == false){
-
-        _pico = valPico * _multiplicador;
+        _pico = valPico + (valPico * _porcentajePico);
         _iniciarSecuencia = true;
 
         _ledArranque = random(3, (_numPixel - 3));
@@ -80,7 +79,7 @@ void WaveEffect::run(float valPico){
     }
     else {
 
-        if (_pico > 1){
+        if (_pico > _minimoPico){
             _pico -= _valorDecrementoEntrePicos;
         }
     }
