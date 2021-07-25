@@ -40,8 +40,8 @@ byte pinSensorTemp = A1;
 
 
 //---------- Variables del programa ---------//
-float minimoPicoEffects = 5;//Valor por encima del cual se considera un pico de audio
-float minimoPico = 6;//Valor de diferencia entre lecturas que se toma como un pico de audio
+float minimoPicoEffects = 6;//Valor por encima del cual se considera un pico de audio
+float minimoPico = 10;//Valor de diferencia entre lecturas que se toma como un pico de audio
 float valorDecremento = 0.05;//Valor que se descuenta cuando no se detecta un pico
 float multiplicador = 6;//Valor por el cual se multiplica cuando se detecta un pico de audio
 float value = 0;//Guardo temporalmente el valor de audio
@@ -64,12 +64,12 @@ Adafruit_NeoPixel leds(cantidadLeds, pinLeds, NEO_GRB + NEO_KHZ800);
 //-------- Inicializacion de los efectos -----------//
 TransitionEffect effect_1(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 10);
 WaveEffect effect_2(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 15);
-DotsDegradableEffect effect_3(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 35);// No adaptado a millis
+DotsDegradableEffect effect_3(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador, 35);// No adaptado a millis
 WormEffect effect_4(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 20);
-RandomEffect effect_5(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 5);
+RandomEffect effect_5(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador, 5);
 ReboundEffect effect_6(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 5);
-ScrollingDotsEffect effect_8(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 30);// No adaptado a millis
+ScrollingDotsEffect effect_8(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador, 30);// No adaptado a millis
 
 
 //--------- Array de Efectos -----------//
