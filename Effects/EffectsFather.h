@@ -18,8 +18,8 @@ class EffectsFather : public IEffects{
         unsigned long _tiempoEfecto = 0;
         int _numPixel = 0;
         int _delayEfecto = 0;
-        float _minimoPico;
-        float _pico = 0;
+        float _minimoPico = 10;
+        float _pico = 10;
         float _porcentajePico = 0.15;
         float _multiplicador = 0.15;
         float _valorDecrementoEntrePicos = 0.05;
