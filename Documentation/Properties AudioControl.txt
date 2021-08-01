@@ -1,0 +1,13 @@
+-Metodos:
+
++ AudioControl(byte pinAudio);//Contructor de la libreria
++ readAudio();//Actualiza el estado de mute y devuelve el valor de audio leido
++ setDetectionFrequency(int frequency);//Setea la frecuencia de deteccion de audio
++ setDetectionSilence(bool value, int readingFrequency, int ruinValue, float minimumPeakValue);//Setea si esta activo o no, el delay entre comprobaciones, el valor de ruido, que por debajo del cual se considera silencio y el valor del pico minimo, que por encima del cual se considera un pico de audio
++ getStateMute();//Devuelve true si no se detecto audio y false si se detecto 
+
+
+-Frecuencia de deteccion de audio:
+
+En la funcion 'setDetectionFrequency(int frequency)' recibe un valor de delay (en milisegundos) entre cada lectura de audio
+Cuanto menor sea el valor de delay será más precisa la detección de picos de audio
