@@ -9,7 +9,7 @@ class ReboundEffect : public EffectsFather{
 
     public:
         ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
-        ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
+        ReboundEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect);
         void run(float value);
         
     private:

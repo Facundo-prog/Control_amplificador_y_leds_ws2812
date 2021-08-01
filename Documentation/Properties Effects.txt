@@ -1,0 +1,19 @@
+Clase Effects.h
+
+-Todos los efectos requieren los mismos parametros para el constructor, y tienen el mismo metodo 'run()'
+
+Constructor simplificado:
+    + NombreEfecto(Adafruit_NeoPixel *pixels, int quantityLeds);
+
+    Ejemplo:
+    + TransitionEffect(&leds, 50);
+
+
+Constructor completo:
+    + NombreEfecto(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect);
+
+    Ejemplo:
+    + TransitionEffect effect_1(&leds, 50, 0.05, 6, 0.15, 10);
+
+Metodos:
+    + run(float value);//Recibe un float con el valor de audio

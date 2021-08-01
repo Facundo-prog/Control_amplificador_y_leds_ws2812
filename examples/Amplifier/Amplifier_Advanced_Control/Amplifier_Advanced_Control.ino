@@ -26,7 +26,6 @@ AmplifierControl ampli(pinMute, pinSensorTemp, pinVentilador);
 
 
 void setup() {
-
     Serial.begin(115200);//Inicializo el puerto serial
     ampli.setTemperatureRange(35, 45, 80);//Temp minima 35°, temp alta 45°, temp muy alta 80° 
     ampli.setSetingsAdc(5.0, 1024);//Definimos el voltaje maximo del ADC y su resolucion

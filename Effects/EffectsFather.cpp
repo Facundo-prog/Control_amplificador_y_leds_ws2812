@@ -7,10 +7,10 @@ EffectsFather::EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds){
     if(quantityLeds > 0){_numPixel = quantityLeds;}
 }
 
-EffectsFather::EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier){
+EffectsFather::EffectsFather(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier){
     _pixels = pixels;
     if(quantityLeds > 0){_numPixel = quantityLeds;}
-    if(sensibilityPeak > 0){_sensibilidadPico = sensibilityPeak;}
     if(decrementValue > 0){_valorDecrementoEntrePicos = decrementValue;}
+    if(minimumPeakValue > 0){_minimoPico = minimumPeakValue;}
     if(multiplier >= 0){_multiplicador = multiplier;}
 }

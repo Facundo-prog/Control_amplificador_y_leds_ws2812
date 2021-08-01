@@ -10,7 +10,7 @@ class DotsDegradableEffect : public EffectsFather{
 
     public:
         DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds);
-        DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect);
+        DotsDegradableEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect);
         void run(float value);
         
     private:

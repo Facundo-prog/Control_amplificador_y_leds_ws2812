@@ -26,7 +26,6 @@ AmplifierControl ampli(pinMute, pinSensorTemp, pinVentilador);
 
 
 void setup() {
-
     Serial.begin(115200);//Inicializo el puerto serial
 }
 

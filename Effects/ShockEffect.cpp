@@ -6,7 +6,7 @@
 
 ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds) : EffectsFather(pixels, quantityLeds){_delayEfecto = 5;}
 
-ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float sensibilityPeak, float decrementValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, sensibilityPeak, decrementValue, multiplier){
+ShockEffect::ShockEffect(Adafruit_NeoPixel *pixels, int quantityLeds, float decrementValue, float minimumPeakValue, float multiplier, int delayEffect) : EffectsFather(pixels, quantityLeds, decrementValue, minimumPeakValue, multiplier){
     if(delayEffect > 0){_delayEfecto = delayEffect;}
 }
 
@@ -65,12 +65,11 @@ void ShockEffect::run(float valPico){
     }
 
 
-    if(valPico <= _sensibilidadPico){return;}
+    if(valPico <= (_pico * _multiplicador) || valPico < _minimoPico){return;}
+        
+    if(valPico > _pico && _iniciarSecuencia == false){
 
-
-    if (valPico > _pico && _iniciarSecuencia == false){
-
-        _pico = valPico * _multiplicador;
+        _pico = valPico + (valPico * _porcentajePico);
         _iniciarSecuencia = true;
     
         _r = random(0, 255);
@@ -79,7 +78,7 @@ void ShockEffect::run(float valPico){
     }
     else {
 
-        if (_pico > 1){
+        if (_pico > _minimoPico){
             _pico -= _valorDecrementoEntrePicos;
         }
     }
