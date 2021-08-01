@@ -15,7 +15,7 @@
 - Permite setear multiples parametros
 
 ## Paquete de librerias Effects
-- Consta de 8 librerias que controlan los leds formando distintos efectos de luz
+- Consta de 9 librerias que controlan los leds formando distintos efectos de luz
 - Cada libreria puede controlar leds ws2812/ws2812b, adaptandose a la cantidad de leds y sincronizados con el audio
 - Estan configuradas para un maximo de **500** leds por instancia
 - Cada una se puede configurar de forma diferente 
