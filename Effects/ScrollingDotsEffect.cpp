@@ -22,11 +22,7 @@ ScrollingDotsEffect::ScrollingDotsEffect(Adafruit_NeoPixel *pixels, int quantity
 
 void ScrollingDotsEffect::run(float valPico){
 
-    byte posMaxima = (_numPixel / 2) + 1;
-    int delayCambioColor = 3000;
-
-
-    if(millis() > _tiempoColorPuntosDesplazables + delayCambioColor){
+    if(millis() > _tiempoColorPuntosDesplazables + 2000){
 
         _tiempoColorPuntosDesplazables = millis();
 
@@ -40,15 +36,16 @@ void ScrollingDotsEffect::run(float valPico){
 
         for(int i=0;i < _cantidadLedsDesplazables;i++)
         {
-            if(_ledsDesplazables[i] > posMaxima){
+            if(_ledsDesplazables[i] > (_numPixel / 2) + 1){
                 _ledsDesplazables[i] = 0;
-                _pixels->setPixelColor(_ledsDesplazables[i], 0, 0, 0);
             }
             else if(_ledsDesplazables[i] > 0){
                 _pixels->setPixelColor(_ledsDesplazables[i]-1, _r, _g, _b);
                 _pixels->setPixelColor((_numPixel - _ledsDesplazables[i]), _r, _g, _b);
-                _pixels->setPixelColor(_ledsDesplazables[i]-2, 0, 0, 0);
-                _pixels->setPixelColor(((_numPixel + 1) - _ledsDesplazables[i]), 0, 0, 0);
+                
+                _pixels->setPixelColor(_ledsDesplazables[i]-2, round(_r/15), round(_g/15), round(_b/15));
+                if(_ledsDesplazables[i] > 1){_pixels->setPixelColor(((_numPixel + 1) - _ledsDesplazables[i]), round(_r/15), round(_g/15), round(_b/15));}
+                if(_ledsDesplazables[i] > 1){_pixels->setPixelColor(_numPixel + _ledsDesplazables[i] - 2, round(_r/15), round(_g/15), round(_b/15));}
                 _ledsDesplazables[i] += 1;
             }
         }

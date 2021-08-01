@@ -15,11 +15,8 @@ void DotsDegradableEffect::run(float valPico){
     byte divisorTemporal = 0;
     byte posicionTemporal = 0;
     byte posicion = 0;
-    int delayCambioColor = 3000;
-    byte valorDeIncremento = 1;
 
-
-    if(millis() > _tiempoColorPuntosDegradables + delayCambioColor){
+    if(millis() > _tiempoColorPuntosDegradables + 2000){
         
         _r = random(0,255);
         _g = random(0,255);
@@ -45,7 +42,7 @@ void DotsDegradableEffect::run(float valPico){
                 _pixels->setPixelColor(posicionTemporal, round(_r/divisorTemporal), round(_g/divisorTemporal), round(_b/divisorTemporal));
                 _pixels->setPixelColor(posicionTemporal + 1, round(_r/divisorTemporal+2), round(_g/divisorTemporal+2), round(_b/divisorTemporal+2));
                 _pixels->setPixelColor(posicionTemporal - 1, round(_r/divisorTemporal+2), round(_g/divisorTemporal+2), round(_b/divisorTemporal+2));
-                _divLedsEfectoVoz[0][i] += valorDeIncremento;
+                _divLedsEfectoVoz[0][i] += 1;
             }
         }
         _pixels->show();
