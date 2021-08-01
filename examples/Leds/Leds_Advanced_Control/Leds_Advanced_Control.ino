@@ -25,6 +25,7 @@
 #include <ReboundEffect.h>
 #include <ShockEffect.h>
 #include <ScrollingDotsEffect.h>
+#include <WaterfallEffect.h>
 
 
 //------ Pines Utilizados ------//
@@ -42,8 +43,8 @@ float value = 0;//Guardo temporalmente el valor de audio
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
-byte efectoActual = 0;//Determina el efecto que se esta generando
-byte cantidadEfectos = 8;//Cantidad de efectos
+byte efectoActual = 8;//Determina el efecto que se esta generando
+byte cantidadEfectos = 9;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
 
 
@@ -61,10 +62,11 @@ RandomEffect effect_5(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador
 ReboundEffect effect_6(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 5);
 ScrollingDotsEffect effect_8(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador, 30);// No adaptado a millis
+WaterfallEffect effect_9(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 15);
 
 
 //--------- Array de Efectos -----------//
-EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
+EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8, &effect_9};
 
 
 void setup(){
@@ -85,7 +87,7 @@ void loop(){
     if(estadoEfectos == true){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
-
+    /*
     if((millis() - tiempoAnteriorComprobacion) >= 10000){
         efectoActual++;//Incremento el efecto
         estadoEfectos = true;//Activo los efectos
@@ -101,4 +103,5 @@ void loop(){
 
         tiempoAnteriorComprobacion = millis();//Vuelvo a 0 la diferencia de timepo
     }
+    */
 }

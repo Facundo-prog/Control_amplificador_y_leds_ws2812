@@ -24,6 +24,7 @@
 #include <ReboundEffect.h>
 #include <ShockEffect.h>
 #include <ScrollingDotsEffect.h>
+#include <WaterfallEffect.h>
 
 
 //------ Pines Utilizados ------//
@@ -37,7 +38,7 @@ float value = 0;//Guardo temporalmente el valor de audio
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
 byte efectoActual = 0;//Determina el efecto que se esta generando
-byte cantidadEfectos = 8;//Cantidad de efectos
+byte cantidadEfectos = 9;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
 
 
@@ -55,10 +56,11 @@ RandomEffect effect_5(&leds, cantidadLeds);
 ReboundEffect effect_6(&leds, cantidadLeds);
 ShockEffect effect_7(&leds, cantidadLeds);
 ScrollingDotsEffect effect_8(&leds, cantidadLeds);// No adaptado a millis
+WaterfallEffect effect_9(&leds, cantidadLeds);
 
 
 //--------- Array de Efectos -----------//
-EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
+EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8, &effect_9};
 
 
 void setup(){

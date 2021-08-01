@@ -14,21 +14,21 @@
 // ¡¡¡¡ IMPORTANTE !!!!
 // Es necesario tener instalada la libreria: Adafruit_NeoPixel.h
 
-#include "AmplifierControl.h"  //Libreria que controla el amplificador
-#include "AudioControl.h"      //Libreria que obtiene el audio
+#include <AmplifierControl.h>  //Libreria que controla el amplificador
+#include <AudioControl.h>      //Libreria que obtiene el audio
 #include <Adafruit_NeoPixel.h> //Libreria necesaria para controlar los leds
 #include <Arduino.h>
 
 
 //-------- Incluyo los efectos que voy a usar -------//
-#include "TransitionEffect.h"
-#include "WaveEffect.h"
-#include "DotsDegradableEffect.h"
-#include "WormEffect.h"
-#include "RandomEffect.h"
-#include "ReboundEffect.h"
-#include "ShockEffect.h"
-#include "ScrollingDotsEffect.h"
+#include <TransitionEffect.h>
+#include <WaveEffect.h>
+#include <DotsDegradableEffect.h>
+#include <WormEffect.h>
+#include <RandomEffect.h>
+#include <ReboundEffect.h>
+#include <ShockEffect.h>
+#include <ScrollingDotsEffect.h>
 
 
 //------Pines Utilizados ------//
@@ -52,7 +52,7 @@ unsigned long tiempoTemperatura = 0;//Variable donde guardamos el valor de milli
 unsigned long tiempoCambioEfecto = 0;//Variable donde guardamos el valor de millis para compararlo
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
 byte efectoActual = 0;//Determina el efecto que se esta generando
-byte cantidadEfectos = 8;//Cantidad de efectos
+byte cantidadEfectos = 9;//Cantidad de efectos
 
 
 //--------- Instancias de Objetos ---------//
@@ -70,10 +70,11 @@ RandomEffect effect_5(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador
 ReboundEffect effect_6(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 40);
 ShockEffect effect_7(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 5);
 ScrollingDotsEffect effect_8(&leds, cantidadLeds, 0.2, minimoPicoEffects, multiplicador, 30);// No adaptado a millis
+WaterfallEffect effect_9(&leds, cantidadLeds, valorDecremento, minimoPicoEffects, multiplicador, 15);
 
 
 //--------- Array de Efectos -----------//
-EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8};
+EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_5, &effect_6, &effect_7, &effect_8, &effect_9};
 
 
 void setup() {
