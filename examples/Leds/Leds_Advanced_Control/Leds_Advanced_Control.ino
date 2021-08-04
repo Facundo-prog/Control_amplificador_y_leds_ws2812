@@ -30,7 +30,7 @@
 
 //------ Pines Utilizados ------//
 byte pinLeds = 2;
-byte pinLecturaAudio = A0;
+byte pinLecturaAudio = A1;
 
 
 //---------- Variables del programa ---------//
@@ -43,7 +43,7 @@ float value = 0;//Guardo temporalmente el valor de audio
 byte brilloLeds = 255;//Determina el brillo de los leds. El minimo es 0 y el maximo 255
 
 long tiempoAnteriorComprobacion = 0;//Variable donde guardamos el valor de millis para compararlo
-byte efectoActual = 8;//Determina el efecto que se esta generando
+byte efectoActual = 0;//Determina el efecto que se esta generando
 byte cantidadEfectos = 9;//Cantidad de efectos
 bool estadoEfectos = true;//Determina si los efectos estan activos o no
 
@@ -70,7 +70,6 @@ EffectsFather* efectos[] = {&effect_1, &effect_2, &effect_3, &effect_4, &effect_
 
 
 void setup(){
-
     audio.setDetectionSilence(true, 10000, 10, minimoPico);//Activo la deteccion silencio, con un delay entre comprobaciones de 10 segundos y un techo de ruido de 10
     audio.setDetectionFrequency(1000);//Seteo la frecuencia de deteccion. Leer propiedades.txt
 
@@ -87,7 +86,7 @@ void loop(){
     if(estadoEfectos == true){
         efectos[efectoActual]->run(value);//Actualizo el estado de los leds
     }
-    /*
+    
     if((millis() - tiempoAnteriorComprobacion) >= 10000){
         efectoActual++;//Incremento el efecto
         estadoEfectos = true;//Activo los efectos
@@ -103,5 +102,5 @@ void loop(){
 
         tiempoAnteriorComprobacion = millis();//Vuelvo a 0 la diferencia de timepo
     }
-    */
+    
 }
