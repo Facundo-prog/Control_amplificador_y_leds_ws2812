@@ -30,7 +30,7 @@
 
 //------ Pines Utilizados ------//
 byte pinLeds = 2;
-byte pinLecturaAudio = A1;
+byte pinLecturaAudio = A0;
 
 
 //---------- Variables del programa ---------//
