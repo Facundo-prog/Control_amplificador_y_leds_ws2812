@@ -65,10 +65,10 @@ void ShockEffect::run(float valPico){
     }
 
 
-    if(valPico <= (_pico * _multiplicador) || valPico < _minimoPico){return;}
-        
+    if(valPico < _minimoPico){return;}
+ 
     if(valPico > _pico && _iniciarSecuencia == false){
-
+        
         _pico = valPico + (valPico * _porcentajePico);
         _iniciarSecuencia = true;
     

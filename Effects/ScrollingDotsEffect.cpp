@@ -54,8 +54,8 @@ void ScrollingDotsEffect::run(float valPico){
     }
 
 
-    if(valPico <= (_pico * _multiplicador) || valPico < _minimoPico){return;}
-        
+    if(valPico < _minimoPico){return;}
+ 
     if(valPico > _pico){
         _pico = valPico + (valPico * _porcentajePico);
     
